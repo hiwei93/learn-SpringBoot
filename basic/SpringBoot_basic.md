@@ -1,15 +1,17 @@
-#SpringBoot-basic
+#SpringBoot_basic
 ##1. SpringBoot特点
 - 化简为繁，简化配置；
 - 是下一代框架；
 - 微服务的入门级微框架；
 > SpringBoot-->SpringCloud-->微服务，SpringBoot是微服务的基础。
+
 ##2. IDEA创建SpringBoot应用
 1. create new project-->Spring Initializr；
 2. Initializr Service URL填写：http://start.spring.io；
 3. 输入项目相关信息；
 ![Alt text](./springboot-step 1.PNG)
 4. 依赖项选择web-->web；
+
 ##3. 依赖项：pom.xml
 ``` xml
 <dependencies>
@@ -37,6 +39,7 @@
 		</plugins>
 	</build>
 ```
+
 ##4. SpringBoot配置
 > 项目创建的是application.properties文件，建议使用application.yml。
 
@@ -208,11 +211,13 @@ spring:
     show-sql: true
 ```
 > 注：本例中Spring Boot的版本为1.5.1，应用上述配置会报以下错误 
+
 ``` 
 Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 ```
 ![Alt text](./springboot-step 2.PNG)
 > 必须使用多环境配置，即：
+
 ```
 spring:
   profiles:
@@ -373,7 +378,8 @@ public class GirlService {
     }
 }
 ```
-> 在Service上或Service的方法上添加@Transactional注解
+> 在Servicelei上或Service的方法上添加@Transactional注解
+
 GirlController.java
 ``` java
     @Autowired
