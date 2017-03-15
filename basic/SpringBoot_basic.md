@@ -1,18 +1,20 @@
-#SpringBoot_basic
-##1. SpringBoot特点
+# SpringBoot (basic)
+## 1. SpringBoot特点
 - 化简为繁，简化配置；
 - 是下一代框架；
 - 微服务的入门级微框架；
 > SpringBoot-->SpringCloud-->微服务，SpringBoot是微服务的基础。
 
-##2. IDEA创建SpringBoot应用
+## 2. IDEA创建SpringBoot应用
 1. create new project-->Spring Initializr；
 2. Initializr Service URL填写：http://start.spring.io；
 3. 输入项目相关信息；
-![Alt text](./springboot-step 1.PNG)
+
+![Alt text](./springboot-step-1.PNG)
+
 4. 依赖项选择web-->web；
 
-##3. 依赖项：pom.xml
+## 3. 依赖项：pom.xml
 ``` xml
 <dependencies>
 		<!-- SpringBoot web应用必须的依赖 -->
@@ -40,7 +42,7 @@
 	</build>
 ```
 
-##4. SpringBoot配置
+## 4. SpringBoot配置
 > 项目创建的是application.properties文件，建议使用application.yml。
 
 1. yml语法
@@ -144,7 +146,7 @@ spring:
 ```
 > active的值可以根据需要设置为dev或者prod。
 
-##5. Controller的使用
+## 5. Controller的使用
 |注解                   | 作用                 |  
 |:---------------------|:---------------------|
 |@Controller          |  处理http请求     |
@@ -153,11 +155,11 @@ spring:
 |@PathVariable        | 获取URL中的数据     |
 |@RequestParam        | 获取请求参数的值    |
 |@GetMapping          | 组合注解           |
-###1. @RequestMapping注解
+### 1. @RequestMapping注解
 1. @RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)的value值可以设置多个，写为集合`value = {"/hello", "/hi"}`；
 2. @RequestMapping可以注解到方法上，也可以作用到类上；
 3. 可以用@GetMapping(value="/hello")、@PostMapping(value="/hello")简化@RequestMapping的写法。
-###2. 获取参数值
+### 2. 获取参数值
 1. 对于`/hello/100`这样的URL
 ``` java
 	@RequestMapping(value = "/hello/{id}", method = RequestMethod.GET)
@@ -181,9 +183,9 @@ spring:
 ```
 > 其中`required `：是否必传；`defaultValue`：为默认值，参数值必须为字符；
 
-##6. 数据库操作
+## 6. 数据库操作
 Spring-Data-Jpa ---> MySQL
-###1. 配置数据库依赖项：pom.xml
+### 1. 配置数据库依赖项：pom.xml
 ``` xml
 		<!-- 数据库组件 -->
 		<dependency>
@@ -197,7 +199,7 @@ Spring-Data-Jpa ---> MySQL
 		</dependency>
 ```
 
-###2. 配置连接数据库的参数：application.yml
+### 2. 配置连接数据库的参数：application.yml
 ```
 spring:
   datasource:
@@ -215,7 +217,8 @@ spring:
 ``` 
 Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 ```
-![Alt text](./springboot-step 2.PNG)
+![Alt text](./springboot-step-2.PNG)
+
 > 必须使用多环境配置，即：
 
 ```
@@ -225,7 +228,7 @@ spring:
   datasource:
   ... ...
 ```
-###3. 创建数据库表对应的类
+### 3. 创建数据库表对应的类
 ``` java
 @Entity
 public class Gril {
@@ -249,7 +252,7 @@ public class Gril {
 > 3. @Id注解：标明主键；
 > 4. @GeneratedValue注解：标明主键自增。
 
-###4. Spring-data-jpa操作数据库
+### 4. Spring-data-jpa操作数据库
 GirlRepository.java
 创建接口GirlRepository，继承JpaRepository
 ``` java
@@ -333,7 +336,7 @@ public class GirlController {
 > - save(arg);用于保存和更新数据；
 > - delete(arg);用于删除一个数据。
 
-####查询扩展
+#### 查询扩展
 接口GirlRepository.java中：
 ``` java
 public interface GirlRepository extends JpaRepository<Girl, Integer> {
@@ -355,7 +358,7 @@ GirlController.java
     }
 ```
 
-##7. 事务管理
+## 7. 事务管理
 GirlService.java
 ``` java
 @Service
